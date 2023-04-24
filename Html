@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Add Rows Dynamically with jQuery</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+      $(document).ready(function() {
+        $("#add-row-btn").click(function() {
+          var newRow = $("<tr>");
+          var cols = "";
+          cols += '<td><input type="text" class="form-control" name="name"></td>';
+          cols += '<td><select class="form-control" name="category"><option value="">Select</option><option value="option1">Option 1</option><option value="option2">Option 2</option><option value="option3">Option 3</option></select></td>';
+          cols += '<td><input type="text" class="form-control" name="value"></td>';
+          cols += '<td><button class="btn btn-primary save-btn">Save</button></td>';
+          newRow.append(cols);
+          $("#table-body").append(newRow);
+        });
+        $(document).on("click", ".save-btn", function() {
+          var row = $(this).closest("tr");
+          var name = row.find('input[name="name"]').val();
+          var category = row.find('select[name="category"]').val();
+          var value = row.find('input[name="value"]').val();
+          // Do something with the data, e.g. send it to the server via AJAX
+          alert("Name: " + name + "\nCategory: " + category + "\nValue: " + value);
+        });
+      });
+    </script>
+    <style>
+      .form-control {
+        width: 100%;
+        max-width: 200px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Add Rows Dynamically with jQuery</h1>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Value</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="table-body">
+          <tr>
+            <td><input type="text" class="form-control" name="name"></td>
+            <td>
+              <select class="form-control" name="category">
+                <option value="">Select</option>
+                <option value="option1">Option 1</option>
+                <option value="option2">Option 2</option>
+                <option value="option3">Option 3</option>
+              </select>
+            </td>
+            <td><input type="text" class="form-control" name="value"></td>
+            <td><button class="btn btn-primary save-btn">Save</button></td>
+          </tr>
+        </tbody>
+      </table>
+      <button id="add-row-btn" class="btn btn-primary">Add Row</button>
+    </div>
+  </body>
+</html>
