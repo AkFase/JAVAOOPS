@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Download Template</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    #notification {
+      display: none;
+      background-color: #4CAF50;
+      color: #fff;
+      text-align: center;
+      padding: 15px;
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <a href="#" id="downloadLink">Download Template</a>
+
+  <div id="notification">File downloaded successfully</div>
+
+  <script>
+    document.getElementById('downloadLink').addEventListener('click', function() {
+      // Simulate file download
+      simulateFileDownload('path/to/sample-file.txt');
+    });
+
+    function simulateFileDownload(filePath) {
+      // In a real scenario, you would likely fetch the file from the server
+      // and initiate the download. For simplicity, we use a timeout here.
+      setTimeout(function() {
+        // Create a dummy anchor element
+        var link = document.createElement('a');
+        link.href = filePath;
+
+        // Set the download attribute and trigger a click event
+        link.download = 'sample-file.txt';
+        document.body.appendChild(link);
+        link.click();
+
+        // Remove the anchor element from the DOM
+        document.body.removeChild(link);
+
+        // Display the notification message
+        document.getElementById('notification').style.display = 'block';
+
+        // Hide the notification after 3 seconds (adjust as needed)
+        setTimeout(function() {
+          document.getElementById('notification').style.display = 'none';
+        }, 3000);
+      }, 1000); // Simulate a 1-second delay before the download completes
+    }
+  </script>
+
+</body>
+</html>
